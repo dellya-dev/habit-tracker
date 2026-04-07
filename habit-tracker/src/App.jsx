@@ -1,27 +1,14 @@
-import { useHabit } from './hooks/useHabit'
+import HabitList from './components/HabitList';
 import './App.css'
+import AddHabit from './components/AddHabit';
 
 function App() {
-  const {state, dispatch} = useHabit();
-
-  const addHabit = () => {
-    dispatch({
-      type: "ADD HABIT",
-      payload: {
-        id: Date.now(),
-        title: "sleep"
-      }
-    });
-  }
 
   return (
     <div>
-      <button onClick={addHabit}>Add Habit</button>
-      {state.habits.map((habit) => (
-        <div key={habit.id}>
-          {habit.title}
-        </div>
-      ))}
+      <h1>Habit Tracker</h1>
+      <AddHabit />
+      <HabitList />
     </div>
   )
 }
