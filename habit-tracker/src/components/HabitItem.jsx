@@ -19,6 +19,15 @@ function HabitItem({ habit }) {
         }
         disabled={isDoneToday}
       >{isDoneToday? "Done ✅" : "Done Today"}</button>
+
+      <button
+        onClick={() => {
+          dispatch({
+            type: "ARCHIVE HABIT",
+            payload: { id: habit.id }
+          })
+        }}
+      >Archive</button>
     </div>
   )
 }
