@@ -9,7 +9,9 @@ function HabitList() {
       {Object.values(state).length === 0? (
         <p>Not yet habit</p>
       ) : (
-      Object.values(state).map((habit) => (
+      Object.values(state)
+      .filter(habit => habit.status === "active")
+      .map((habit) => (
         <HabitItem key={habit.id} 
           habit={habit}
         />

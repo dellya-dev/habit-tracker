@@ -9,6 +9,7 @@ function HabitItem({ habit }) {
   return (
     <div>
       <p>{habit.title}</p>
+      {habit.status === "archived" && (<span>Archived</span>)}
       
       <button
         onClick={() => 
@@ -27,6 +28,7 @@ function HabitItem({ habit }) {
             payload: { id: habit.id }
           })
         }}
+        disabled={habit.status === "archived"}
       >Archive</button>
     </div>
   )
