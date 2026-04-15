@@ -11,19 +11,19 @@ function HabitList() {
   return (
     <>
       <div>
-        <button 
+        <button
           onClick={() => setFilter("active")}
           style={{ fontWeight: filter === "active" ? "bold" : "normal" }}
-          >
+        >
           Active ({habits.filter(habit => habit.status === "active").length
-})
+          })
         </button>
-        <button 
+        <button
           onClick={() => setFilter("archived")}
           style={{ fontWeight: filter === "archived" ? "bold" : "normal" }}
-          >
+        >
           Archived ({habits.filter(habit => habit.status === "archived").length
-})
+          })
         </button>
       </div>
       <div>
