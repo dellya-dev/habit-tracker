@@ -7,7 +7,7 @@ function HabitItem({ habit }) {
   const isDoneToday = habit.completedDates?.includes(today) || false
 
   return (
-    <div>
+    <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <p>{habit.title}</p>
 
       {habit.status === "archived" && (<span>📦Archived</span>)}
@@ -19,7 +19,7 @@ function HabitItem({ habit }) {
             payload: {id: habit.id}
           })
         }
-        disabled={isDoneToday}
+        disabled={habit.status === "archived" || isDoneToday}
       >{isDoneToday? "Done ✅" : "Done Today"}</button>
 
       <button

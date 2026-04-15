@@ -6,6 +6,8 @@ function HabitList() {
   const { state } = useHabit()
   const [filter, setFilter] = useState("active")
 
+  const habits = Object.values(state)
+
   return (
     <>
       <div>
@@ -13,13 +15,15 @@ function HabitList() {
           onClick={() => setFilter("active")}
           style={{ fontWeight: filter === "active" ? "bold" : "normal" }}
           >
-          Active
+          Active ({habits.filter(habit => habit.status === "active").length
+})
         </button>
         <button 
           onClick={() => setFilter("archived")}
           style={{ fontWeight: filter === "archived" ? "bold" : "normal" }}
           >
-          Archived
+          Archived ({habits.filter(habit => habit.status === "archived").length
+})
         </button>
       </div>
       <div>

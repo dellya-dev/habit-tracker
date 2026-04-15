@@ -1,20 +1,23 @@
 export const initialState = {};
 
 export function habitReducer(state, action) {
-  switch(action.type) {
+  switch (action.type) {
     case "ADD HABIT":
       return {
-        ...state, 
-       [action.payload.id]: action.payload
+        ...state,
+        [action.payload.id]: action.payload
       };
-      default:
-        return state;
-    
+    default:
+      return state;
+
 
     case "DONE TODAY": {
       const { id } = action.payload
       const today = new Date().toISOString().split("T")[0]
-
+      if (state[id].completedDates.includes(today)) {
+        return state
+      }
+      
       return {
         ...state,
         [id]: {
@@ -25,8 +28,8 @@ export function habitReducer(state, action) {
           ]
         }
       }
-    }  
-    
+    }
+
     case "ARCHIVE HABIT": {
       const { id } = action.payload
 
