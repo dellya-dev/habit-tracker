@@ -7,6 +7,7 @@ function HabitList() {
   const [filter, setFilter] = useState("active")
 
   const habits = Object.values(state)
+  const filtered = habits.filter(habit => habit.status === filter)
 
   return (
     <>
@@ -27,8 +28,25 @@ function HabitList() {
         </button>
       </div>
       <div>
-        {Object.values(state).length === 0 ? (
-          <p>Not yet habit</p>
+        {
+          habits.length === 0 ? (
+            <p>No habit yet</p>
+          ) : filtered.length === 0 ? (
+            <p>
+              {filter === "active" 
+              ? "No active habits"
+              : "No archived habits"}
+            </p>
+          ) : (
+            filtered.map(habit => (
+               <HabitItem key={habit.id}
+                habit={habit} />
+            ))
+          )
+        }
+
+        {/* {Object.values(state).length === 0 ? (
+          <p>No habit yet</p>
         ) : (
           Object.values(state)
             .filter(habit => habit.status === filter)
@@ -36,7 +54,7 @@ function HabitList() {
               <HabitItem key={habit.id}
                 habit={habit}
               />
-            )))}
+            )))} */}
       </div>
     </>
   )
