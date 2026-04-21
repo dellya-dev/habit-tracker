@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 import HabitItem from "./HabitItem"
+import getWeeklyProgress from '../utils/getWeeklyProgress'
 
 function HabitList() {
   const { state } = useHabit()
@@ -33,19 +34,35 @@ function HabitList() {
             <p>No habit yet</p>
           ) : filtered.length === 0 ? (
             <p>
-              {filter === "active" 
-              ? "No active habits"
-              : "No archived habits"}
+              {filter === "active"
+                ? "No active habits"
+                : "No archived habits"}
             </p>
           ) : (
-            filtered.map(habit => (
-               <HabitItem key={habit.id}
-                habit={habit} />
-            ))
-          )
-        }
+            filtered.map(habit => {
+              const { count, target, isCompleted } = getWeeklyProgress(habit)
 
-        {/* {Object.values(state).length === 0 ? (
+              return (
+                <HabitItem key={habit.id} habit={habit}
+                
+                >
+                  <p>
+                    {count} / {target} this week{" "}
+                    {isCompleted ? "✅ Completed" : "On progress"}
+                  </p>
+                  
+                </HabitItem>
+              )})
+            )
+          }
+      </div>
+    </>
+
+  )
+}
+
+
+{/* {Object.values(state).length === 0 ? (
           <p>No habit yet</p>
         ) : (
           Object.values(state)
@@ -55,10 +72,7 @@ function HabitList() {
                 habit={habit}
               />
             )))} */}
-      </div>
-    </>
-  )
-}
+
 
 
 export default HabitList

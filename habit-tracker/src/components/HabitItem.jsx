@@ -1,6 +1,7 @@
+import { Children } from 'react'
 import { useHabit } from '../hooks/useHabit'
 
-function HabitItem({ habit }) {
+function HabitItem({ habit, children }) {
   const { dispatch } = useHabit()
 
   const today = new Date().toISOString().split("T")[0] 
@@ -9,7 +10,8 @@ function HabitItem({ habit }) {
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <p>{habit.title}</p>
-
+      {children}
+      
       {habit.status === "archived" && (<span>📦Archived</span>)}
       
       <button
