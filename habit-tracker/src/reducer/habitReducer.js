@@ -17,7 +17,7 @@ export function habitReducer(state, action) {
       if (state[id].completedDates.includes(today)) {
         return state
       }
-      
+
       return {
         ...state,
         [id]: {
@@ -41,5 +41,22 @@ export function habitReducer(state, action) {
         }
       }
     }
+
+    case "UPDATE WEEKLY TARGET":
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          weeklyTarget: action.payload.weeklyTarget
+        }
+      }
+    // return {
+    //   ...state,
+    //   habits: Object.values(state).map(habit =>
+    //     habit.id === action.payload.id
+    //       ? { ...habit, weeklyTarget: action.payload.weeklyTarget }
+    //       : habit
+    //   )
+    // }
   }
 }

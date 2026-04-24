@@ -1,6 +1,6 @@
 function getWeeklyProgress(habit) {
   const dates = habit.completedDates || []
-  const target = habit.weeklyTarget || 3
+  const target = habit.weeklyTarget ?? 3
 
   const today = new Date()
   const day = today.getDay()
