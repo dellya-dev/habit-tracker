@@ -42,21 +42,16 @@ export function habitReducer(state, action) {
       }
     }
 
-    case "UPDATE WEEKLY TARGET":
+    case "UPDATE WEEKLY TARGET": {
+      const { id } = action.payload
+
       return {
         ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          weeklyTarget: action.payload.weeklyTarget
+        [id]: {
+          ...state[id],
+          weeklyTarget: id.weeklyTarget
         }
       }
-    // return {
-    //   ...state,
-    //   habits: Object.values(state).map(habit =>
-    //     habit.id === action.payload.id
-    //       ? { ...habit, weeklyTarget: action.payload.weeklyTarget }
-    //       : habit
-    //   )
-    // }
+    }
   }
 }

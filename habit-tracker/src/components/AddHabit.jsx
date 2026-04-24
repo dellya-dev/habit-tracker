@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHabit } from "../hooks/useHabit";
 
-function AddHabit(habit) {
+function AddHabit() {
   const [title, setTitle] = useState("")
   const [weeklyTarget, setWeeklyTarget] = useState(3)
   const { dispatch } = useHabit()
@@ -36,7 +36,7 @@ function AddHabit(habit) {
         />
 
         <select
-          value={habit.weeklyTarget}
+          value={weeklyTarget}
           onChange={(e) => {
             setWeeklyTarget(Number(e.target.value))
            }}
