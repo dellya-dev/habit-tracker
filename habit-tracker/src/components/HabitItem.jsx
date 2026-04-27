@@ -1,28 +1,56 @@
-import { Children } from 'react'
+import { Children, useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 
 function HabitItem({ habit, children }) {
   const { dispatch } = useHabit()
+  const [isEditing, setIsEditing] = useState(false)
 
-  const today = new Date().toISOString().split("T")[0] 
+  const today = new Date().toISOString().split("T")[0]
   const isDoneToday = habit.completedDates?.includes(today) || false
 
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
-      <p>{habit.title}</p>
+      <div>
+        <p>{habit.title}</p>
+        {!isEditing && (
+          <p onClick={() => setIsEditing(true)}>
+            {habit.weeklyTarget} x/week
+          </p>
+        )}
+        {isEditing && (
+          <div>
+            {[2, 3, 4, 5, 6].map(num => (
+              <button key={num}
+                onClick={() => {
+                  dispatch({
+                    type: "UPDATE WEEKLY TARGET",
+                    payload: {
+                      id: habit.id,
+                      weeklyTarget: num
+                    }
+                  })
+                  setIsEditing(false)
+                }}>
+                {num} x/week
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       {children}
-      
+
       {habit.status === "archived" && (<span>📦Archived</span>)}
-      
+
       <button
-        onClick={() => 
+        onClick={() =>
           dispatch({
             type: "DONE TODAY",
-            payload: {id: habit.id}
+            payload: { id: habit.id }
           })
         }
         disabled={habit.status === "archived" || isDoneToday}
-      >{isDoneToday? "Done ✅" : "Done Today"}</button>
+      >{isDoneToday ? "Done ✅" : "Done Today"}</button>
 
       <button
         onClick={() => {

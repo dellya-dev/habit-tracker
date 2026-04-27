@@ -8,9 +8,11 @@ function getWeeklyProgress(habit) {
 
   const startWeek = new Date(today)
   startWeek.setDate(today.getDate() - diff)
+  startWeek.setHours(0, 0, 0, 0)
 
   const endWeek = new Date(startWeek)
   endWeek.setDate(startWeek.getDate() + 6)
+  endWeek.setHours(23, 59, 59, 999)
 
   const thisWeek = dates.filter(date => {
     const d = new Date(date)

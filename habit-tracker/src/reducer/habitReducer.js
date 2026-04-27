@@ -43,13 +43,13 @@ export function habitReducer(state, action) {
     }
 
     case "UPDATE WEEKLY TARGET": {
-      const { id } = action.payload
+      const { id, weeklyTarget } = action.payload
 
       return {
         ...state,
         [id]: {
           ...state[id],
-          weeklyTarget: id.weeklyTarget
+          weeklyTarget
         }
       }
     }
