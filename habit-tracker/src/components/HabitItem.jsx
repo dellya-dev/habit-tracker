@@ -8,6 +8,8 @@ function HabitItem({ habit, children }) {
   const today = new Date().toISOString().split("T")[0]
   const isDoneToday = habit.completedDates?.includes(today) || false
 
+  const canEdit = !habit.hasEditedTarget && habit.status !== "archived"
+
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <div>
@@ -21,6 +23,7 @@ function HabitItem({ habit, children }) {
           <div>
             {[2, 3, 4, 5, 6].map(num => (
               <button key={num}
+              disabled={!canEdit}
                 onClick={() => {
                   dispatch({
                     type: "UPDATE WEEKLY TARGET",

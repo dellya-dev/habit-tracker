@@ -5,7 +5,10 @@ export function habitReducer(state, action) {
     case "ADD HABIT":
       return {
         ...state,
-        [action.payload.id]: action.payload
+        [action.payload.id]: {
+          ...action.payload,
+        hasEditedTarget: false
+        } 
       };
     default:
       return state;
@@ -49,7 +52,8 @@ export function habitReducer(state, action) {
         ...state,
         [id]: {
           ...state[id],
-          weeklyTarget
+          weeklyTarget,
+          hasEditedTarget: true
         }
       }
     }
