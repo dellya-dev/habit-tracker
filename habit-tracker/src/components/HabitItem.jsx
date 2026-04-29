@@ -1,7 +1,7 @@
 import { Children, useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 
-function HabitItem({ habit, children }) {
+function HabitItem({ habit, children, isCompleted }) {
   const { dispatch } = useHabit()
   const [isEditing, setIsEditing] = useState(false)
 
@@ -9,6 +9,7 @@ function HabitItem({ habit, children }) {
   const isDoneToday = habit.completedDates?.includes(today) || false
 
   const canEdit = !habit.hasEditedTarget && habit.status !== "archived"
+
 
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
@@ -52,7 +53,7 @@ function HabitItem({ habit, children }) {
             payload: { id: habit.id }
           })
         }
-        disabled={habit.status === "archived" || isDoneToday}
+        disabled={habit.status === "archived" || isDoneToday || isCompleted}
       >{isDoneToday ? "Done ✅" : "Done Today"}</button>
 
       <button
