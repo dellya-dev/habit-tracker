@@ -7,8 +7,8 @@ export function habitReducer(state, action) {
         ...state,
         [action.payload.id]: {
           ...action.payload,
-        hasEditedTarget: false
-        } 
+          hasEditedTarget: false
+        }
       };
     default:
       return state;
@@ -54,6 +54,24 @@ export function habitReducer(state, action) {
           ...state[id],
           weeklyTarget,
           hasEditedTarget: true
+        }
+      }
+    }
+
+    case "SET BREAK": {
+      const { id, days } = action.payload
+
+      const today = new Date()
+      const breakUntil = new Date()
+      breakUntil.setDate(today.getDate() + days)
+
+      const breakUntilStr = breakUntil.toISOString().split("T")[0]
+
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          breakUntil: breakUntilStr
         }
       }
     }

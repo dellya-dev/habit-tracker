@@ -15,7 +15,7 @@ function AddHabit() {
         id: Date.now().toString(),
         title,
         completedDates: [],
-        breaks: [],
+        breakUntil: null,
         status: "active",
         weeklyTarget
       }

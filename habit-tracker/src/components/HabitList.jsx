@@ -40,11 +40,11 @@ function HabitList() {
             </p>
           ) : (
             filtered.map(habit => {
-              const { count, target, isCompleted } = getWeeklyProgress(habit)
+              const { count, target, isCompleted, isOnBreak } = getWeeklyProgress(habit)
 
               return (
                 <HabitItem key={habit.id} habit={habit}
-                
+                  isOnBreak={isOnBreak}
                 >
                   <p>
                     {count} / {target} this week{" "}

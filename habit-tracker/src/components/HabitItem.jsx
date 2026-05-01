@@ -1,7 +1,7 @@
 import { Children, useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 
-function HabitItem({ habit, children, isCompleted }) {
+function HabitItem({ habit, children, isCompleted, isOnBreak }) {
   const { dispatch } = useHabit()
   const [isEditing, setIsEditing] = useState(false)
 
@@ -10,11 +10,17 @@ function HabitItem({ habit, children, isCompleted }) {
 
   const canEdit = !habit.hasEditedTarget && habit.status !== "archived"
 
-
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <div>
         <p>{habit.title}</p>
+
+        {isOnBreak && (
+          <span style={{ color: "orange", fontWeight: "bold" }}>
+            On Break
+          </span>
+        )}
+
         {!isEditing && (
           <p onClick={() => setIsEditing(true)}>
             {habit.weeklyTarget} x/week
@@ -24,7 +30,7 @@ function HabitItem({ habit, children, isCompleted }) {
           <div>
             {[2, 3, 4, 5, 6].map(num => (
               <button key={num}
-              disabled={!canEdit}
+                disabled={!canEdit}
                 onClick={() => {
                   dispatch({
                     type: "UPDATE WEEKLY TARGET",
@@ -47,13 +53,16 @@ function HabitItem({ habit, children, isCompleted }) {
       {habit.status === "archived" && (<span>📦Archived</span>)}
 
       <button
-        onClick={() =>
+        onClick={() => {
+          if (isDoneToday || isCompleted || isOnBreak) return
           dispatch({
             type: "DONE TODAY",
             payload: { id: habit.id }
           })
-        }
-        disabled={habit.status === "archived" || isDoneToday || isCompleted}
+        }}
+        disabled={habit.status === "archived" || isDoneToday || 
+        isCompleted || 
+        isOnBreak}
       >{isDoneToday ? "Done ✅" : "Done Today"}</button>
 
       <button
@@ -65,6 +74,40 @@ function HabitItem({ habit, children, isCompleted }) {
         }}
         disabled={habit.status === "archived"}
       >Archive</button>
+
+      <button
+        onClick={() => {
+          if (isOnBreak) return
+
+          dispatch({
+            type: "SET BREAK",
+            payload: {
+              id: habit.id,
+              days: 3
+            }
+          })
+        }}
+        disabled={habit.status === "archived" || isOnBreak}
+      >
+        Break 3d
+      </button>
+
+      <button
+        onClick={() => {
+          if (isOnBreak) return
+
+          dispatch({
+            type: "SET_BREAK",
+            payload: {
+              id: habit.id,
+              days: 7
+            }
+          })
+        }}
+        disabled={habit.status === "archived" || isOnBreak}
+      >
+        Break 7d
+      </button>
     </div>
   )
 }

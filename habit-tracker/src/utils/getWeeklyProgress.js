@@ -22,11 +22,17 @@ function getWeeklyProgress(habit) {
 
   const isCompleted = count >= target
 
-  return {
-    count,
-    target,
-    isCompleted
-  }
+  const todayOnBreak = new Date().toISOString().split("T")[0]
+
+  const isOnBreak =  habit.breakUntil && todayOnBreak <= habit.breakUntil
+
+   return {
+      count,
+      target,
+      isCompleted,
+      isOnBreak
+    }
+
 }
 
 export default getWeeklyProgress
