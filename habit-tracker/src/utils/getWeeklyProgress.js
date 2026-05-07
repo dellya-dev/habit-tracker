@@ -2,6 +2,7 @@ function getWeeklyProgress(habit) {
   const dates = habit.completedDates || []
   const target = habit.weeklyTarget ?? 3
 
+
   const today = new Date()
   const day = today.getDay()
   const diff = (day + 6) % 7
@@ -16,7 +17,8 @@ function getWeeklyProgress(habit) {
 
   const thisWeek = dates.filter(date => {
     const d = new Date(date)
-    return d >= startWeek && d <= endWeek})
+    return d >= startWeek && d <= endWeek
+  })
 
   const count = thisWeek.length
 
@@ -24,14 +26,14 @@ function getWeeklyProgress(habit) {
 
   const todayOnBreak = new Date().toISOString().split("T")[0]
 
-  const isOnBreak =  habit.breakUntil && todayOnBreak <= habit.breakUntil
+  const isOnBreak = habit.breakUntil && todayOnBreak <= habit.breakUntil
 
-   return {
-      count,
-      target,
-      isCompleted,
-      isOnBreak
-    }
+  return {
+    count,
+    target,
+    isCompleted,
+    isOnBreak
+  }
 
 }
 

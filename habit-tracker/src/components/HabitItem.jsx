@@ -1,7 +1,7 @@
 import { Children, useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 
-function HabitItem({ habit, children, isCompleted, isOnBreak }) {
+function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
   const { dispatch } = useHabit()
   const [isEditing, setIsEditing] = useState(false)
 
@@ -10,16 +10,25 @@ function HabitItem({ habit, children, isCompleted, isOnBreak }) {
 
   const canEdit = !habit.hasEditedTarget && habit.status !== "archived"
 
+  let statusText = "⚪ On progress"
+
+  if(isOnBreak) {
+    statusText =  "🟠 On Break"
+  } else if(isCompleted) {
+    statusText =  "✅ Completed"
+  }
+  
+
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <div>
         <p>{habit.title}</p>
 
-        {isOnBreak && (
+        {/* {isOnBreak && (
           <span style={{ color: "orange", fontWeight: "bold" }}>
             On Break
           </span>
-        )}
+        )} */}
 
         {!isEditing && (
           <p onClick={() => setIsEditing(true)}>
@@ -52,6 +61,8 @@ function HabitItem({ habit, children, isCompleted, isOnBreak }) {
 
       {habit.status === "archived" && (<span>📦Archived</span>)}
 
+      <p>{statusText} ({count} / {target})</p>
+
       <button
         onClick={() => {
           if (isDoneToday || isCompleted || isOnBreak) return
@@ -83,23 +94,6 @@ function HabitItem({ habit, children, isCompleted, isOnBreak }) {
             type: "SET BREAK",
             payload: {
               id: habit.id,
-              days: 3
-            }
-          })
-        }}
-        disabled={habit.status === "archived" || isOnBreak}
-      >
-        Break 3d
-      </button>
-
-      <button
-        onClick={() => {
-          if (isOnBreak) return
-
-          dispatch({
-            type: "SET_BREAK",
-            payload: {
-              id: habit.id,
               days: 7
             }
           })
@@ -113,3 +107,4 @@ function HabitItem({ habit, children, isCompleted, isOnBreak }) {
 }
 
 export default HabitItem
+

@@ -43,13 +43,18 @@ function HabitList() {
               const { count, target, isCompleted, isOnBreak } = getWeeklyProgress(habit)
 
               return (
-                <HabitItem key={habit.id} habit={habit}
+                <HabitItem 
+                  key={habit.id} 
+                  habit={habit}
                   isOnBreak={isOnBreak}
+                  count={count}
+                  target={target}
+                  isCompleted={isCompleted}
                 >
-                  <p>
+                  {/* <p>
                     {count} / {target} this week{" "}
                     {isCompleted ? "✅ Completed" : "On progress"}
-                  </p>
+                  </p> */}
                   
                 </HabitItem>
               )})
