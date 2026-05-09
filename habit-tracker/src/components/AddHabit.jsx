@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHabit } from "../hooks/useHabit";
+import '../App.css'
 
 function AddHabit() {
   const [title, setTitle] = useState("")
@@ -25,8 +26,9 @@ function AddHabit() {
   }
  
   return (
-    <div>
-      <input  
+    <div className="add-habit">
+      <input 
+        className="add-input" 
         type="text" 
         placeholder="Add Habit..." 
         value={title}
@@ -36,6 +38,7 @@ function AddHabit() {
         />
 
         <select
+          className="add-select"
           value={weeklyTarget}
           onChange={(e) => {
             setWeeklyTarget(Number(e.target.value))
@@ -48,7 +51,9 @@ function AddHabit() {
           <option value={6}>6x / week</option>
         </select>
 
-        <button onClick={handleAdd}>Add</button>
+        <button 
+          className="add-button" 
+          onClick={handleAdd}>Add</button>
     </div>
   )
 }

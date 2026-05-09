@@ -22,7 +22,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
   return (
     <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <div>
-        <p>{habit.title}</p>
+        <h3 className='habit-title'>{habit.title}</h3>
 
         {/* {isOnBreak && (
           <span style={{ color: "orange", fontWeight: "bold" }}>
@@ -31,14 +31,18 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
         )} */}
 
         {!isEditing && (
-          <p onClick={() => setIsEditing(true)}>
+          <button 
+            className='edit-target-weekly-button'
+            onClick={() => setIsEditing(true)}>
             {habit.weeklyTarget} x/week
-          </p>
+          </button>
         )}
         {isEditing && (
           <div>
             {[2, 3, 4, 5, 6].map(num => (
-              <button key={num}
+              <button 
+                className='edit-target-weekly-button'
+                key={num}
                 disabled={!canEdit}
                 onClick={() => {
                   dispatch({
@@ -64,6 +68,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
       <p>{statusText} ({count} / {target})</p>
 
       <button
+        className='done-today-button'
         onClick={() => {
           if (isDoneToday || isCompleted || isOnBreak) return
           dispatch({
@@ -77,6 +82,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
       >{isDoneToday ? "Done ✅" : "Done Today"}</button>
 
       <button
+        className='archive-button'
         onClick={() => {
           dispatch({
             type: "ARCHIVE HABIT",
@@ -87,6 +93,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
       >Archive</button>
 
       <button
+      className='break-button'
         onClick={() => {
           if (isOnBreak) return
 

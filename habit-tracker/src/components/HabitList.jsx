@@ -14,6 +14,7 @@ function HabitList() {
     <>
       <div>
         <button
+          className='active-button'
           onClick={() => setFilter("active")}
           style={{ fontWeight: filter === "active" ? "bold" : "normal" }}
         >
@@ -21,6 +22,7 @@ function HabitList() {
           })
         </button>
         <button
+          className='archived-button'
           onClick={() => setFilter("archived")}
           style={{ fontWeight: filter === "archived" ? "bold" : "normal" }}
         >

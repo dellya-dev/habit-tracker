@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f5f6f8;
+}
+
+button {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: small;
+  cursor: pointer;
+}
+
+.add-input {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border-color: rgb(26, 175, 113);
+  margin-right: 5px;
+}
+
+.add-input::placeholder {
+  font-size: 15px;
+}
+
+.add-select {
+  padding: 6px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: rgb(26, 175, 113);
+  margin-right: 5px;
+}
+
+.add-button, .done-today-button, .archive-button, .break-button {
+  padding: 6px 10px;
+  border: none;
+  background-color: rgb(26, 175, 113);
+  border-radius: 10px;
+  color: white;
+  margin-right: 5px;
+}
+
+.add-button:hover, .done-today-button:hover, .archive-button:hover, .break-button:hover {
+  opacity: 0.8;
+}
+
+.active-button {
+  padding: 6px 10px;
+  background-color:  rgb(238, 145, 69);
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-right: 100px;
+}
+
+.archived-button {
+  padding: 6px 10px;
+  background-color:  rgb(226, 219, 214);
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+.active-button:hover, .archived-button:hover {
+  opacity: 0.8;
+}
+
+.habit-title {
+  margin-top: 30px;
+}
+
+.edit-target-weekly-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color:  rgb(26, 175, 113);
+  margin-right: 5px;
+}
+
+button:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
