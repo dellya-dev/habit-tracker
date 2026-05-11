@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div>
-      <h1>Habit Tracker</h1>
+      <h1 className='habit-tracker'>Habit Tracker</h1>
       <AddHabit />
       <HabitList />
     </div>

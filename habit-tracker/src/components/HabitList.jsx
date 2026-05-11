@@ -12,7 +12,7 @@ function HabitList() {
 
   return (
     <>
-      <div>
+      <div className='active-archived-card'>
         <button
           className='active-button'
           onClick={() => setFilter("active")}
@@ -30,7 +30,7 @@ function HabitList() {
           })
         </button>
       </div>
-      <div>
+      <div className='grid-habits'>
         {
           habits.length === 0 ? (
             <p>No habit yet</p>

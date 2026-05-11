@@ -18,11 +18,12 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
     statusText =  "✅ Completed"
   }
   
-
   return (
-    <div style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
+    <div 
+      className='card-grid'
+      style={{ opacity: habit.status === "archived" ? 0.5 : 1 }}>
       <div>
-        <h3 className='habit-title'>{habit.title}</h3>
+        <p className='habit-title'>{habit.title}</p>
 
         {/* {isOnBreak && (
           <span style={{ color: "orange", fontWeight: "bold" }}>
@@ -31,11 +32,15 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
         )} */}
 
         {!isEditing && (
-          <button 
-            className='edit-target-weekly-button'
-            onClick={() => setIsEditing(true)}>
-            {habit.weeklyTarget} x/week
-          </button>
+          <p 
+            className='edit-target-weekly-paragraph'
+            onClick={() => {
+              if (!canEdit) return
+              setIsEditing(true)
+              }}>
+                 {habit.weeklyTarget} x/week
+                 {habit.hasEditedTarget && "🔒"}
+          </p>
         )}
         {isEditing && (
           <div>
@@ -65,7 +70,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
 
       {habit.status === "archived" && (<span>📦Archived</span>)}
 
-      <p>{statusText} ({count} / {target})</p>
+      <p className='status-text'>{statusText} ({count} / {target})</p>
 
       <button
         className='done-today-button'

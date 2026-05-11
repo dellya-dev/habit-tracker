@@ -26,7 +26,7 @@ function AddHabit() {
   }
  
   return (
-    <div className="add-habit">
+    <div className="add-habit-card">
       <input 
         className="add-input" 
         type="text" 
