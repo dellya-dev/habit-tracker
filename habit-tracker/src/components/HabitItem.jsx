@@ -8,7 +8,7 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
   const today = new Date().toISOString().split("T")[0]
   const isDoneToday = habit.completedDates?.includes(today) || false
 
-  const canEdit = !habit.hasEditedTarget && habit.status !== "archived"
+  const canEdit = habit.editCount < 3 && habit.status !== "archived"
 
   let statusText = "⚪ On progress"
 
@@ -38,11 +38,13 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
               if (!canEdit) return
               setIsEditing(true)
               }}>
-                 {habit.weeklyTarget} x/week
-                 {habit.hasEditedTarget && "🔒"}
+                 <span>{habit.weeklyTarget} x/week</span>
+                 {habit.editCount >= 3 && "🔒"}
+                 <span>remaining edits: {3 - habit.editCount}</span>
           </p>
         )}
         {isEditing && (
+          <>
           <div>
             {[2, 3, 4, 5, 6].map(num => (
               <button 
@@ -63,6 +65,12 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
               </button>
             ))}
           </div>
+          <button 
+            className='cancel-edit-weekly-button'
+            onClick={() => {
+            setIsEditing(false)
+          }}>Cancel</button>
+          </>
         )}
       </div>
 

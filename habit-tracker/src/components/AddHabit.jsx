@@ -18,7 +18,8 @@ function AddHabit() {
         completedDates: [],
         breakUntil: null,
         status: "active",
-        weeklyTarget
+        weeklyTarget,
+        editCount: 0
       }
     })
     setTitle("")

@@ -7,7 +7,7 @@ export function habitReducer(state, action) {
         ...state,
         [action.payload.id]: {
           ...action.payload,
-          hasEditedTarget: false
+          editCount: 0
         }
       };
     default:
@@ -53,7 +53,7 @@ export function habitReducer(state, action) {
         [id]: {
           ...state[id],
           weeklyTarget,
-          hasEditedTarget: true
+          editCount: state[id].editCount + 1
         }
       }
     }

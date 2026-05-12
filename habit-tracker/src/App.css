@@ -17,7 +17,7 @@ body {
   padding: 6px 10px;
   border-radius: 10px;
   border-color: rgb(26, 175, 113);
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .add-input::placeholder {
@@ -29,7 +29,7 @@ body {
   border-radius: 10px;
   border-width: 2px;
   border-color: rgb(26, 175, 113);
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .add-button, 
@@ -41,7 +41,12 @@ body {
   border-radius: 10px;
   color: white;
   margin-right: 8px;
-  margin-bottom: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.add-button {
+  padding: 8px;
 }
 
 .active-archived-card {
@@ -100,7 +105,6 @@ button {
   cursor: pointer;
 }
 
-
 .archive-button {
    padding: 6px 10px;
    border: none;
@@ -110,16 +114,16 @@ button {
    margin-right: 8px;
 }
 
- .break-button {
+ .break-button,
+ .cancel-edit-weekly-button {
   padding: 6px 10px;
   border: none;
   background-color: rgba(238, 145, 69, 0.712);
   border-radius: 10px;
   color: white;
   margin-right: 5px;
+  margin-top: 6px;
  }
-
-
 
 button:hover {
   opacity: 0.8;
@@ -128,4 +132,12 @@ button:hover {
 button:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+select:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
 }
