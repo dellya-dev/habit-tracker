@@ -1,0 +1,57 @@
+
+.card-grid {
+  background-color:  rgba(138, 132, 128, 0.068);
+  border-radius: 7px;
+  margin: 10px;
+  padding: 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.habit-title {
+  font-size: x-large;
+  font-weight: 700;
+  margin: 0;
+}
+
+.edit-target-weekly-paragraph {
+  font-size: small;
+  margin-top: 8px;
+}
+
+.status-text {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.done-today-button, 
+.edit-target-weekly-button {
+  padding: 6px 10px;
+  border: none;
+  background-color: rgb(26, 175, 113);
+  border-radius: 10px;
+  color: white;
+  margin-right: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+
+.archive-button {
+   padding: 6px 10px;
+   border: none;
+   background-color: rgba(138, 132, 128, 0.904);
+   border-radius: 10px;
+   color: white;
+   margin-right: 8px;
+}
+
+ .break-button,
+ .cancel-edit-weekly-button {
+  padding: 6px 10px;
+  border: none;
+  background-color: rgba(238, 145, 69, 0.911);
+  border-radius: 10px;
+  color: white;
+  margin-right: 5px;
+  margin-top: 6px;
+ }

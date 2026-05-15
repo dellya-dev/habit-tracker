@@ -1,5 +1,6 @@
 import { Children, useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
+import './HabitItem.css'
 
 function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
   const { dispatch } = useHabit()
@@ -32,15 +33,15 @@ function HabitItem({ habit, children, count, target, isCompleted, isOnBreak }) {
         )} */}
 
         {!isEditing && (
-          <p 
+          <p
             className='edit-target-weekly-paragraph'
             onClick={() => {
               if (!canEdit) return
               setIsEditing(true)
               }}>
-                 <span>{habit.weeklyTarget} x/week</span>
+                 <span>{habit.weeklyTarget} x/week</span> 
                  {habit.editCount >= 3 && "🔒"}
-                 <span>remaining edits: {3 - habit.editCount}</span>
+                 <span>{" "}remaining edits: {3 - habit.editCount}</span>
           </p>
         )}
         {isEditing && (

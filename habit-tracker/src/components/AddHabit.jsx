@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHabit } from "../hooks/useHabit";
 import '../App.css'
+import './AddHabit.css'
 
 function AddHabit() {
   const [title, setTitle] = useState("")

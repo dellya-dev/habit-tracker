@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useHabit } from '../hooks/useHabit'
 import HabitItem from "./HabitItem"
 import getWeeklyProgress from '../utils/getWeeklyProgress'
+import './HabitList.css'
 
 function HabitList() {
   const { state } = useHabit()
@@ -52,13 +53,7 @@ function HabitList() {
                   count={count}
                   target={target}
                   isCompleted={isCompleted}
-                >
-                  {/* <p>
-                    {count} / {target} this week{" "}
-                    {isCompleted ? "✅ Completed" : "On progress"}
-                  </p> */}
-                  
-                </HabitItem>
+                />
               )})
             )
           }
