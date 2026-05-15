@@ -62,7 +62,9 @@ While building this project, I practiced:
 
 ## Live Demo
 
-Coming soon...
+```
+https://habit-tracker-omega-gules.vercel.app/
+```
 
 ---
 
